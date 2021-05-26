@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BLOOMZON MOBILE</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bloomzon App">
+    <meta name="keywords" content="Driver App"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png" sizes="32x32">
+    <link rel="shortcut icon" href="assets/img/favicon.png">
+    <script src="header.js?cache=2"></script>
+</head>
+<script>
+    check_login();
+</script>
+
+<body>
+
+<!-- loader -->
+<div id="loader">
+    <img src="assets/img/logo-icon.png" alt="icon" class="loading-icon">
+</div>
+<!-- * loader -->
+
+<!-- App Header -->
+<div class="appHeader bg-primary text-light">
+    <div class="left d-none">
+        <a href="#" class="headerButton" data-toggle="modal" data-target="#sidebarPanel">
+            <ion-icon name="menu-outline"></ion-icon>
+        </a>
+    </div>
+    <div class="pageTitle">
+        <img src="assets/img/logo-icon.png" alt="logo" class="logo">
+    </div>
+    <div class="right">
+        <a href="app-order.html" class="headerButton">
+            <ion-icon class="icon" name="notifications-outline"></ion-icon>
+        </a>
+    </div>
+</div>
+<!-- * App Header -->
+
+
+<div id="app">
+    <!-- App Capsule -->
+    <div id="appCapsule">
+
+        <!-- Wallet Card -->
+        <div class="section wallet-card-section pt-1">
+            <div class="wallet-card">
+                <!-- Balance -->
+                <div class="balance">
+                    <div class="left">
+                        <span class="title">Total Balance</span>
+                        <small>{{user.name}}</small>
+                        <h1 class="total">{{user.balance+'.00'}}</h1>
+                    </div>
+                    <div class="right">
+                        <a href="#" class="button" data-toggle="modal" data-target="#profileActionSheet">
+                            <ion-icon name="cog"></ion-icon>
+                        </a>
+                    </div>
+                </div>
+                <!-- * Balance -->
+            </div>
+        </div>
+        <!-- Wallet Card -->
+
+        <!-- Profile Action Sheet -->
+        <div class="modal fade action-sheet" id="profileActionSheet" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Profile</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="action-sheet-content">
+                            <form onsubmit="return false">
+
+                                <div class="form-group basic">
+                                    <div class="input-wrapper">
+                                        <label class="label" for="account1">Account Type</label>
+                                        <small>{{user.type}}</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic">
+                                    <div class="input-wrapper">
+                                        <label class="label" for="account1">Balance</label>
+                                        <small>{{user.balance}}</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic">
+                                    <div class="input-wrapper">
+                                        <label class="label" for="account1">Name</label>
+                                        <small>{{user.name}}</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic">
+                                    <div class="input-wrapper">
+                                        <label class="label" for="account1">Email</label>
+                                        <small>{{user.email}}</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic">
+                                    <div class="input-wrapper">
+                                        <label class="label" for="account1">Phone</label>
+                                        <small>{{(user.phone)?user.phone:'Not Added'}}</small>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group basic">
+                                    <button onclick="window.open('http://ecm.bloomzon.com/', '_blank')" type="button"
+                                            class="btn btn-primary btn-block btn-lg"
+                                            data-dismiss="modal">Update Profile
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- * Profile Action Sheet -->
+
+        <!-- Pickup Action Sheet -->
+        <div class="modal fade action-sheet" id="pickupActionSheet" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Product Details</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="action-sheet-content">
+
+                            <div class="form-group basic">
+                                <div class="input-wrapper">
+                                    <label class="label" for="account1">Receivers Name</label>
+                                    <small>Name: {{p.name}}</small>
+                                </div>
+                            </div>
+
+                            <div class="form-group basic">
+                                <div class="input-wrapper">
+                                    <label class="label" for="account1">Receivers Contacts</label>
+                                    <small>To: {{p.phone}}</small>
+                                </div>
+                            </div>
+
+                            <div class="form-group basic">
+                                <div class="input-wrapper">
+                                    <label class="label" for="account1">Item Tags</label>
+                                    <small>Tags: {{p.tags}}</small>
+                                </div>
+                            </div>
+
+                            <div class="form-group basic">
+                                <div class="input-wrapper">
+                                    <label class="label" for="account1">Rider Options</label>
+                                    <select class="form-control custom-select" id="account1">
+                                        <option value="0">Accept</option>
+                                        <option value="1">In Transit</option>
+                                        <option value="2">Delivered</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group basic">
+                                <div class="input-wrapper">
+                                    <label class="label" for="account1">Status</label>
+                                    <small>{{alert}}</small>
+                                </div>
+                            </div>
+
+                            <div class="form-group basic">
+                                <button @click="update_order(p)" type="button" class="btn btn-primary btn-block btn-lg"
+                                        data-dismiss="modal">Update Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- * Pickup Action Sheet -->
+
+        <!-- Stats -->
+        <div class="section">
+            <div class="row mt-2">
+                <div class="col-6">
+                    <div class="stat-box">
+                        <div class="title">All Orders</div>
+                        <div class="value text-danger">{{(orders)?orders.length:0}}</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="stat-box">
+                        <div class="title">My Deliveries</div>
+                        <div class="value text-success">{{(myorders)?myorders.length:0}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-6">
+                    <div class="stat-box">
+                        <div class="title">My Orders</div>
+                        <div class="value">{{(myorders)?myorders.length:0}}</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="stat-box">
+                        <div class="title">In Warehouse</div>
+                        <div class="value">{{(warehouse)?warehouse.length:0}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- * Stats -->
+
+        <!-- Transactions -->
+        <div class="section mt-4 mb-4">
+            <div class="section-heading">
+                <h2 class="title">Pickup Items</h2>
+                <small class="link">{{(warehouse.length>0)?'Loaded':'Please wait...'}}</small>
+            </div>
+            <div class="transactions">
+
+                <!-- item -->
+                <a @click="p=i" data-toggle="modal" data-target="#pickupActionSheet" class="item"
+                   v-for="(i, k) in warehouse">
+                    <div class="detail">
+                        <img src="assets/img/logo-icon.png" alt="img" class="image-block imaged w48">
+                        <div>
+                            <strong>Ready Shipment</strong>
+                            <p>To: {{JSON.parse(i.shipping_address).name}}</p>
+                            <p>Contacts: : {{JSON.parse(i.shipping_address).phone}}</p>
+                            <p>Addr: {{JSON.parse(i.shipping_address).address}}</p>
+                        </div>
+                    </div>
+                </a>
+                <!-- * item -->
+
+            </div>
+        </div>
+        <!-- * Transactions -->
+
+    </div>
+    <!-- * App Capsule -->
+</div>
+
+<!-- App Bottom Menu -->
+<div class="appBottomMenu">
+    <a href="app-index.html" class="item active">
+        <div class="col">
+            <ion-icon name="pie-chart-outline"></ion-icon>
+            <strong>Home</strong>
+        </div>
+    </a>
+    <a href="app-order.html" class="item">
+        <div class="col">
+            <ion-icon name="basket"></ion-icon>
+            <strong>My Orders</strong>
+        </div>
+    </a>
+    <a href="#" class="item" data-toggle="modal" data-target="#profileActionSheet">
+        <div class="col">
+            <ion-icon name="cog"></ion-icon>
+            <strong>Profile</strong>
+        </div>
+    </a>
+</div>
+<!-- * App Bottom Menu -->
+
+<!-- App Sidebar -->
+<div class="modal fade panelbox panelbox-left" id="sidebarPanel" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                <!-- profile box -->
+                <div class="profileBox pt-2 pb-2">
+                    <div class="image-wrapper">
+                        <img src="assets/img/sample/avatar/avatar1.jpg" alt="image" class="imaged  w36">
+                    </div>
+                    <div class="in">
+                        <strong>Sebastian Doe</strong>
+                        <div class="text-muted">4029209</div>
+                    </div>
+                    <a href="#" class="btn btn-link btn-icon sidebar-close" data-dismiss="modal">
+                        <ion-icon name="close-outline"></ion-icon>
+                    </a>
+                </div>
+                <!-- * profile box -->
+                <!-- balance -->
+                <div class="sidebar-balance">
+                    <div class="listview-title">Balance</div>
+                    <div class="in">
+                        <h1 class="amount">$ 2,562.50</h1>
+                    </div>
+                </div>
+                <!-- * balance -->
+
+                <!-- action group -->
+                <div class="action-group">
+                    <a href="app-index.html" class="action-button">
+                        <div class="in">
+                            <div class="iconbox">
+                                <ion-icon name="add-outline"></ion-icon>
+                            </div>
+                            Deposit
+                        </div>
+                    </a>
+                    <a href="app-index.html" class="action-button">
+                        <div class="in">
+                            <div class="iconbox">
+                                <ion-icon name="arrow-down-outline"></ion-icon>
+                            </div>
+                            Withdraw
+                        </div>
+                    </a>
+                    <a href="app-index.html" class="action-button">
+                        <div class="in">
+                            <div class="iconbox">
+                                <ion-icon name="arrow-forward-outline"></ion-icon>
+                            </div>
+                            Send
+                        </div>
+                    </a>
+                    <a href="app-cards.html" class="action-button">
+                        <div class="in">
+                            <div class="iconbox">
+                                <ion-icon name="card-outline"></ion-icon>
+                            </div>
+                            My Cards
+                        </div>
+                    </a>
+                </div>
+                <!-- * action group -->
+
+                <!-- menu -->
+                <div class="listview-title mt-1">Menu</div>
+                <ul class="listview flush transparent no-line image-listview">
+                    <li>
+                        <a href="app-index.html" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="pie-chart-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                Overview
+                                <span class="badge badge-primary">10</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="app-pages.html" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="document-text-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                Pages
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="app-components.html" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="apps-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                Components
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="app-cards.html" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="card-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                My Cards
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- * menu -->
+
+                <!-- others -->
+                <div class="listview-title mt-1">Others</div>
+                <ul class="listview flush transparent no-line image-listview">
+                    <li>
+                        <a href="app-settings.html" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="settings-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                Settings
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="component-messages.html" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="chatbubble-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                Support
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="app-login.html" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="log-out-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                Log out
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- * others -->
+
+                <!-- send money -->
+                <div class="listview-title mt-1">Send Money</div>
+                <ul class="listview image-listview flush transparent no-line">
+                    <li>
+                        <a href="#" class="item">
+                            <img src="assets/img/sample/avatar/avatar2.jpg" alt="image" class="image">
+                            <div class="in">
+                                <div>Artem Sazonov</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="item">
+                            <img src="assets/img/sample/avatar/avatar4.jpg" alt="image" class="image">
+                            <div class="in">
+                                <div>Sophie Asveld</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="item">
+                            <img src="assets/img/sample/avatar/avatar3.jpg" alt="image" class="image">
+                            <div class="in">
+                                <div>Kobus van de Vegte</div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- * send money -->
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- * App Sidebar -->
+
+<!-- ///////////// Js Files ////////////////////  -->
+<!-- Jquery -->
+<script src="assets/js/lib/jquery-3.4.1.min.js"></script>
+<!-- Bootstrap-->
+<script src="assets/js/lib/popper.min.js"></script>
+<script src="assets/js/lib/bootstrap.min.js"></script>
+<!-- Ionicons -->
+<script src="https://unpkg.com/ionicons%405.0.0/dist/ionicons.js"></script>
+<!-- Owl Carousel -->
+<script src="assets/js/plugins/owl-carousel/owl.carousel.min.js"></script>
+<!-- Base Js File -->
+<script src="assets/js/base.js"></script>
+<script src="vue.js"></script>
+<script src="app.js?cache=9"></script>
+
+<script>
+
+    (apiCaller(API_GET_ALL_ORDERS_URL, {}, function (data) {
+        _vue.$data.orders = data.data.orders;
+        console.log(data.data.orders)
+    }, "GET"));
+
+    (apiCaller(API_GET_RIDER_ORDERS_URL + '/' + _vue.$data.user.id, {}, function (data) {
+        _vue.$data.myorders = data.data.orders;
+        console.log(data.data)
+    }, "GET"));
+
+    (apiCaller(API_GET_IN_WHEREHOUSE_URL, {}, function (data) {
+        _vue.$data.warehouse = data.data.orders;
+        console.log(data.data)
+    }, "GET"));
+
+    //update order
+    function update_order(p) {
+        _vue.$data.alert = "Please wait !";
+        console.log(p);
+    }
+</script>
+
+</body>
+
+</html>
