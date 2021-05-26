@@ -35,7 +35,7 @@
     </div>
     <div class="left">
         <a href="#" class="headerButton" data-toggle="modal" data-target="#logoutActionSheet">
-            <ion-icon name="keypad"></ion-icon>
+            <ion-icon name="log-out"></ion-icon>
         </a>
     </div>
     <div class="pageTitle">
@@ -153,8 +153,9 @@
                                         <small>{{(user.phone)?user.phone:'Not Added'}}</small>
                                     </div>
                                 </div>
-
-
+                                <div class="form-group basic">
+                                    <small>Upload document on profile update (web)</small>
+                                </div>
                                 <div class="form-group basic">
                                     <button onclick="window.open('http://ecm.bloomzon.com/', '_blank')" type="button"
                                             class="btn btn-primary btn-block btn-lg"
@@ -204,7 +205,7 @@
                                 <div class="input-wrapper">
                                     <label class="label" for="account1">Rider Options</label>
                                     <select class="form-control custom-select" id="account1" v-model="order_upd">
-                                        <option value="picked">Accept</option>
+                                        <option value="picked">Order Accepted</option>
                                         <option value="in_transit">In Transit</option>
                                         <option value="delivered">Delivered</option>
                                     </select>
@@ -513,7 +514,7 @@
 <!-- Base Js File -->
 <script src="assets/js/base.js"></script>
 <script src="vue.js"></script>
-<script src="app.js?cache=10"></script>
+<script src="app.js?cache=12"></script>
 
 <script>
 

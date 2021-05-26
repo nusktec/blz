@@ -10,11 +10,13 @@ var _vue = new Vue({
         orders: [],
         myorders: [],
         warehouse: [],
-        page: {},
+        page: {account_type: 'rider'},
         p: {shippiping_address: "{}"},
-        order_upd: {},
+        order_upd: 'picked',
         user: JSON.parse(window.localStorage.getItem("user")),
-        alert: null
+        alert: null,
+        alert2: null,
+        alert3: null,
     }
 });
 
@@ -24,7 +26,7 @@ var _timx = null;
 function _alert(msg, time) {
     //clear existing timer
     _vue.$data.alert = msg;
-    if(time>1000){
+    if (time > 1000) {
         clearInterval(_timx);
         _timx = setTimeout(function () {
             _vue.$data.alert = null;
@@ -35,7 +37,7 @@ function _alert(msg, time) {
 //api caller
 function apiCaller(url, data, callback, method) {
     _header.method = method;
-    if(method==='POST'){
+    if (method === 'POST') {
         _header.body = JSON.stringify(data);
     }
     var api = fetch(url, _header)
@@ -44,6 +46,13 @@ function apiCaller(url, data, callback, method) {
     }).then(function (resp) {
         callback(resp);
     })
+}
+
+//safer mode
+function _ct(txt) {
+    if (txt)
+        return txt;
+    return '';
 }
 
 //logout

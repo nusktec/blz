@@ -28,3 +28,5 @@ const API_GET_RIDER_ORDERS_URL = BASE_URL + "api/v1/rider-orders";
 const API_GET_IN_WHEREHOUSE_URL = BASE_URL + "/api/v1/warehouse-orders";
 
 const API_UPDATE_ORDER = BASE_URL + "api/v1/change-order-status";
+
+const API_REGISTER = BASE_URL + "api/v1/auth/signup";
