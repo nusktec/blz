@@ -51,7 +51,21 @@
 
         <ul class="listview image-listview flush">
 
-            <li v-for="(i, k) in myorders">
+            <li>
+                <a href="#" class="item">
+                    <div class="icon-box bg-primary">
+                        <ion-icon name="arrow-down-outline"></ion-icon>
+                    </div>
+                    <div class="in">
+                        <div>
+                            <div class="mb-05">No New Order</div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+
+
+            <li v-for="(i, k) in myorders" class="d-none">
                 <a href="#" class="item">
                     <div class="icon-box bg-primary">
                         <ion-icon name="arrow-down-outline"></ion-icon>

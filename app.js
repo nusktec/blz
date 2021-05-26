@@ -12,6 +12,7 @@ var _vue = new Vue({
         warehouse: [],
         page: {},
         p: {shippiping_address: "{}"},
+        order_upd: {},
         user: JSON.parse(window.localStorage.getItem("user")),
         alert: null
     }
@@ -43,4 +44,10 @@ function apiCaller(url, data, callback, method) {
     }).then(function (resp) {
         callback(resp);
     })
+}
+
+//logout
+function logout() {
+    window.localStorage.clear();
+    window.location.href = "index.html";
 }
